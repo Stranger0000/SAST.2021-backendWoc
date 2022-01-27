@@ -7,4 +7,15 @@
         INSERT INTO testTable (testField) VALUE value
     </insert>
 
+    <insert id="insert">
+        INSERT INTO account(`username`,`password`,`email`) VALUES (#{username},#{password},#{email})
+    </insert>
+
+    <select id="findByName" resultType="com.example.woc.entity.Account">
+        SELECT * FROM account WHERE username=#{username}
+    </select>
+
+    <select id="login" resultType="com.example.woc.entity.Account">
+        SELECT * FROM account WHERE username=#{username} AND password=#{password}
+    </select>
 </mapper>

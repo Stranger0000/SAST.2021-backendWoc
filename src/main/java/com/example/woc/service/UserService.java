@@ -19,4 +19,25 @@ public class UserService {
     public void test(String test) {
         userMapper.test(test);
     }
+
+    //注册
+    public String insert(Account account) {
+        Account user = userMapper.findByName(account.getUsername());
+        if (account.getUsername().equals("")) {
+            return "用户名不能为空";
+        } else if (account.getPassword().equals("")) {
+            return "密码不能为空";
+        } else if (user != null) {
+            return "用户名已经存在";
+        } else {
+            userMapper.insert(account);
+            return "注册成功";
+        }
+    }
+
+    //登录
+    public Account login(String username,String password){
+        return userMapper.login(username,password);
+    }
+
 }

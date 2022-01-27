@@ -12,6 +12,15 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserMapper {
+
     //示例
     void test(@Param("value") String test);
+
+    //注册
+    void insert(Account account);
+    Account findByName(@Param("username") String username);
+
+    //登录
+    Account login(@Param("username") String username,@Param("password") String password);
+
 }

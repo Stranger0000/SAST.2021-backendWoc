@@ -1,5 +1,7 @@
 package com.example.woc.controller;
 
+import com.example.woc.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     //请仿照 User 补充 Admin 的三层架构并完成接口
+    @Autowired
+    private AdminService adminService;
 
     /**
      * 获取当前的账户总数
      * @return
      */
     @GetMapping("/getAmount")
-    public Integer getAmountOfAccounts(){
+    public Integer getAmountOfAccounts(Integer count){
 
-        //todo
-
-        return null;
+        return adminService.select(count);
     }
 
     /**
@@ -34,7 +36,6 @@ public class AdminController {
     @PutMapping("deleteAccount")
     public void deleteAccount(String username){
 
-        //todo
-
+        adminService.delete(username);
     }
 }

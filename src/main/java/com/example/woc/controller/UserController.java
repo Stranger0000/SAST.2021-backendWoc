@@ -29,10 +29,9 @@ public class UserController {
      * @param account
      */
     @PostMapping("/register")
-    public void uploadUsername(Account account) {
+    public String uploadUsername(Account account) {
 
-        //todo
-
+        return userService.insert(account);
     }
 
     /**
@@ -43,9 +42,12 @@ public class UserController {
     @PostMapping("/login")
     public Boolean login(Account account) {
 
-        //todo
-
-        return null;
+        Account user = userService.login(account.getUsername(), account.getPassword());
+        if(user!= null){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 
