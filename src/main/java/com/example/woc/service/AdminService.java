@@ -11,8 +11,8 @@ public class AdminService {
     private AdminMapper adminMapper;
 
     //获取总数
-    public Integer select(Integer count){
-        return adminMapper.select(count);
+    public Integer select(){
+        return adminMapper.select();
     }
 
     //删除

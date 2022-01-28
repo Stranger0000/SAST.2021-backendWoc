@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface AdminMapper {
 
     //获取总数
-    Integer select(Integer count);
+    Integer select();
 
     //删除
     void delete(@Param("username") String username);

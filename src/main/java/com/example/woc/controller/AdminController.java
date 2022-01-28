@@ -24,9 +24,9 @@ public class AdminController {
      * @return
      */
     @GetMapping("/getAmount")
-    public Integer getAmountOfAccounts(Integer count){
+    public Integer getAmountOfAccounts(){
 
-        return adminService.select(count);
+        return adminService.select();
     }
 
     /**
