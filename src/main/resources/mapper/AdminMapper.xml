@@ -6,7 +6,11 @@
         SELECT COUNT(*) FROM account
     </select>
     
-    <delete id="delete">
+    <delete id="delete" parameterType="com.example.woc.entity.Account">
         DELETE FROM account WHERE username=#{username}
     </delete>
+
+    <update id="update" parameterType="com.example.woc.entity.Account">
+        UPDATE account set role=#{role} WHERE username=#{username}
+    </update>
 </mapper>

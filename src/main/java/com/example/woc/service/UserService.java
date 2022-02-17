@@ -1,6 +1,7 @@
 package com.example.woc.service;
 
 import com.example.woc.entity.Account;
+import com.example.woc.exception.MyException;
 import com.example.woc.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,17 +22,16 @@ public class UserService {
     }
 
     //注册
-    public String insert(Account account) {
+    public void insert(Account account) {
         Account user = userMapper.findByName(account.getUsername());
         if (account.getUsername().equals("")) {
-            return "用户名不能为空";
+            throw new MyException(-1,"用户名不能为空！");
         } else if (account.getPassword().equals("")) {
-            return "密码不能为空";
+            throw new MyException(-2,"密码不能为空！");
         } else if (user != null) {
-            return "用户名已经存在";
+            throw new MyException(-3,"用户已存在！");
         } else {
             userMapper.insert(account);
-            return "注册成功";
         }
     }
 

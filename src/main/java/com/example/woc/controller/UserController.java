@@ -1,9 +1,13 @@
 package com.example.woc.controller;
 
+import com.example.woc.exception.MyException;
+import com.example.woc.utils.Result;
 import com.example.woc.entity.Account;
 import com.example.woc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author: 風楪fy
@@ -29,24 +33,27 @@ public class UserController {
      * @param account
      */
     @PostMapping("/register")
-    public String uploadUsername(Account account) {
+    public Result uploadUsername(Account account) throws MyException{
 
-        return userService.insert(account);
+        userService.insert(account);
+        return new Result(true,null,null,account);
+
     }
 
     /**
      * 完成登录功能
-     * @param account
+     * @param
      * @return 是否登录成功
      */
     @PostMapping("/login")
-    public Boolean login(Account account) {
+    public Result login(String username,String password,HttpSession session) {
 
-        Account user = userService.login(account.getUsername(), account.getPassword());
-        if(user!= null){
-            return true;
-        }else{
-            return false;
+        Account user = userService.login(username, password);
+        session.setAttribute("userLogin",user);
+        if(user==null){
+            throw new MyException(-4,"用户名或密码错误");
+        }else {
+            return new Result(true,null,null,user);
         }
     }
 }
