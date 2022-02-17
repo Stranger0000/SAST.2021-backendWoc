@@ -50,7 +50,7 @@ public class AdminController {
     public Result updateAccount(String username, Integer role){
         Account account= adminService.update(username,role);
         if(account == null){
-            throw new MyException(-5,"用户不存在！无法更改权限！");
+            throw new MyException(-6,"用户不存在！无法更改权限！");
         } else {
             return new Result(true,null,null,account);
         }

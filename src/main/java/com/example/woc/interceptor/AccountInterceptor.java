@@ -27,9 +27,9 @@ public class AccountInterceptor implements HandlerInterceptor {
 
 
         if (userLogin == null) {
-            throw new MyException(-5,"用户未登录");
+            throw new MyException(-7,"用户未登录");
         } else if (userLogin.getRole()==0||userLogin.getRole()==1&&request.getRequestURI().equals("/admin/update")){
-            throw new MyException(-6,"权限不足");
+            throw new MyException(-8,"权限不足");
         } else{
             return true;
         }

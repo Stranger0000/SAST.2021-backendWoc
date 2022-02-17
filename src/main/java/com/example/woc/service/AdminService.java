@@ -26,7 +26,7 @@ public class AdminService {
         Account account=userMapper.findByName(username);
 
         if(account == null){
-            throw new MyException(-4,"用户不存在！删除失败！");
+            throw new MyException(-5,"用户不存在！删除失败！");
         }else{
             adminMapper.delete(username);
         }
